@@ -1,0 +1,49 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 10px 0;
+    border-bottom: 1px solid #cc4f4f;
+}
+
+.logo > a {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logo > a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo h2 {
+    padding-left: 5px;
+    margin: auto 0;
+    font-size: 22px;
+}
+
+.options {
+    display: flex;
+}
+
+.options button {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    margin: 0 5px;
+    background: #e97676;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.options img {
+    width: 15px;
+    margin-right: 5px;
+}
