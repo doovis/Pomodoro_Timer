@@ -2,18 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Timer.css';
 
 const Timer = ({type, handleTheme}) => {
+    // timer type button array
     let buttons = [
         {id: 1, title: "Pomodoro", class: "pomodoro"},
         {id: 2, title: "Short Break", class: "short-break"},
         {id: 3, title: "Long Break", class: "long-break"}
     ];
 
+    // timer state modes
     let curMode = {
         break: "break",
         stop: "stop",
         inProgress: "inProgress"
     }
 
+    // State maintainers
     const [ active, setActive ] = useState(1); // timer types: 1(Pomodoro) / 2(Short break) / 3(Long break)
     const [ mode, setMode ] = useState(curMode.break); // Modes: break/inProgress/stop
     const [ secondsLeft, setSecondsLeft ] = useState(type[0].time * 60); // Seconds left    
