@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Timer.css';
 
-const Timer = ({type}, col) => {
+const Timer = ({type, handleTheme}) => {
     let buttons = [
         {id: 1, title: "Pomodoro", class: "pomodoro"},
         {id: 2, title: "Short Break", class: "short-break"},
@@ -59,6 +59,9 @@ const Timer = ({type}, col) => {
         activeRef.current = e.target.dataset.id;
         setActive(e.target.dataset.id);
 
+        // Changing theme color
+        handleTheme({color: type[activeRef.current - 1].color, theme: activeRef.current - 1});
+
         // Stopping timer
         modeRef.current = 'stop';
         setMode('stop');
@@ -66,26 +69,10 @@ const Timer = ({type}, col) => {
         // Changing timer duration
         secondsLeftRef.current = type[activeRef.current - 1].time * 60;
         setSecondsLeft(type[activeRef.current - 1].time * 60);
-
-        // Changing theme
-        // switch(type[activeRef.current - 1].type) {
-        //     case "pomodoro":
-        //         e.target.parentElement.parentElement.parentElement.style.background = "#e35454";
-        //         console.log(e.target.parentElement.parentElement.parentElement.style.color);
-        //         break;
-                
-        //     case "short-break":
-        //         e.target.parentElement.parentElement.parentElement.style.background = "#316EC3";
-        //         break;
-                
-        //     case "long-break":
-        //         e.target.parentElement.parentElement.parentElement.style.background = "#8662BD";
-        //         break;
-        // }
     }
 
-    const buttonStop = <button className="start-button" onClick={() => { modeRef.current = "inProgress"; setMode("inProgress")}}>Start</button>;
-    const buttonInProgress = <button className="start-button stop" onClick={() => { modeRef.current = "break"; setMode("break")}}>Stop</button>;
+    const buttonStop = <button className={`start-button ${type[activeRef.current - 1].type}`} onClick={() => { modeRef.current = "inProgress"; setMode("inProgress")}}>Start</button>;
+    const buttonInProgress = <button className={`start-button ${type[activeRef.current - 1].type} stop`} onClick={() => { modeRef.current = "break"; setMode("break")}}>Stop</button>;
 
     return (
         <div className="timer-window">
@@ -96,7 +83,7 @@ const Timer = ({type}, col) => {
                             key={elem.id}
                             data-id={elem.id} 
                             onClick={timerTypes}
-                            className={Number(activeRef.current) === elem.id ? "btn-active" : ""} 
+                            className={Number(activeRef.current) === elem.id ? `btn-active` : ""} 
                         >
                             {elem.title}
                         </button>
