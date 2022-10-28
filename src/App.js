@@ -13,8 +13,7 @@ const App = () => {
   }
 
   const handleTimeSetting = (updatedTime) => {
-    console.log(updatedTime);
-    setTime(updatedTime);    
+    setTime(updatedTime);
   }
   
   let timerTypes = [

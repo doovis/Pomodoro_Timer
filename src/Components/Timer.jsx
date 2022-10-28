@@ -55,6 +55,10 @@ const Timer = ({type, handleTheme}) => {
         secondsLeftRef.current = type[activeRef.current - 1].time * 60;
         setSecondsLeft(type[activeRef.current - 1].time * 60);
         
+        // Stopping timer
+        modeRef.current = 'stop';
+        setMode('stop');
+
         return () => {
             clearInterval(interID);
         }
