@@ -50,11 +50,15 @@ const Timer = ({type, handleTheme}) => {
             secondsLeftRef.current--;
             setSecondsLeft(secondsLeftRef.current);
         }, 1000);
+
+        // Updating timer on settings change
+        secondsLeftRef.current = type[activeRef.current - 1].time * 60;
+        setSecondsLeft(type[activeRef.current - 1].time * 60);
         
         return () => {
             clearInterval(interID);
         }
-    }, [])
+    }, [type])
     
     // switching timer types
     const timerTypes = (e) => {
@@ -69,7 +73,7 @@ const Timer = ({type, handleTheme}) => {
         modeRef.current = 'stop';
         setMode('stop');
 
-        // Changing timer duration
+        // Changing timer's duration
         secondsLeftRef.current = type[activeRef.current - 1].time * 60;
         setSecondsLeft(type[activeRef.current - 1].time * 60);
     }
@@ -93,7 +97,11 @@ const Timer = ({type, handleTheme}) => {
                     );
                 })}
            </div>
-           <div className="timer">
+           <div className="timer" onChange={() => {
+                console.log('stopped');
+                modeRef.current = 'stop';
+                setMode('stop');
+                }}>
             <p>{min < 10 ? "0" + min : min}</p>
             <p>:</p>
             <p>{sec < 10 ? "0" + sec : sec}</p>

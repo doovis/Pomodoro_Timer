@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 
-const Navbar = ({ theme, timerTypes }) => {
+const Navbar = ({ timerTypes, handleTimeSetting }) => {
     // Modal types
     // let modals = {
     //     settings: false,
     //     report: false
     // }
-
+    
     const [ modalOpt, setModalOpt ] = useState(""); // active modal
-    const [ pomodoro, setPomodoro ] = useState(""); // pomodoro time
-    const [ shortBreak, setShortBreak ] = useState(""); // Short break time
-    const [ longBreak, setLongBreak ] = useState(""); // Long break time
-    // console.log(timerTypes);
-    // console.log(theme);
-    // console.log(modalOpt);
+    const [ pomodoro, setPomodoro ] = useState(timerTypes[0].time); // pomodoro time
+    const [ shortBreak, setShortBreak ] = useState(timerTypes[1].time); // Short break time
+    const [ longBreak, setLongBreak ] = useState(timerTypes[2].time); // Long break time
+
+    const handlePTime = (e) => {
+        setPomodoro(Number(e.target.value))
+        handleTimeSetting({pomodoro: Number(e.target.value), shortBreak: shortBreak, longBreak: longBreak})
+    }
+    
+    const handleSTime = (e) => {
+        setShortBreak(Number(e.target.value))
+        handleTimeSetting({pomodoro: pomodoro, shortBreak: Number(e.target.value), longBreak: longBreak})
+    }
+    
+    const handleLTime = (e) => {
+        setLongBreak(Number(e.target.value))
+        handleTimeSetting({pomodoro: pomodoro, shortBreak: shortBreak, longBreak: Number(e.target.value)})
+    }
 
     return (
         <>
-            {modalOpt && 
+            {modalOpt === "settings" &&
             <>
                 <div className='modal-bg' onClick={() => setModalOpt("")}></div>
                 <div className="modal-window">
@@ -32,17 +44,47 @@ const Navbar = ({ theme, timerTypes }) => {
                         <div className="timer-inputs">
                             <div>
                                 <label>Pomodoro</label>
-                                <input type="number" step="1" value={pomodoro} />
+                                <input type="number" step="1" value={pomodoro} onChange={(e) => {handlePTime(e)}} />
                             </div>
                             <div>
                                 <label>Short Break</label>
-                                <input type="number" step="1" value={shortBreak} />
+                                <input type="number" step="1" value={shortBreak} onChange={(e) => {handleSTime(e)}} />
                             </div>
                             <div>
                                 <label>Long Break</label>
-                                <input type="number" step="1" value={longBreak} />
+                                <input type="number" step="1" value={longBreak} onChange={(e) => {handleLTime(e)}} />
                             </div>
                         </div>
+                    </div>
+                    <hr />
+                </div>
+            </>
+            }
+            {modalOpt === "report" &&
+            <>
+                <div className='modal-bg' onClick={() => setModalOpt("")}></div>
+                <div className="modal-window">
+                    <div className='settings-header'>
+                        <h4>report setting</h4>
+                        <button className='close-btn' onClick={() => setModalOpt("")}><img src="https://pomofocus.io/icons/remove-black-sm.png" /></button>
+                    </div>
+                    <hr />
+                    <div className="inputs">
+                        <h5>Time</h5>
+                        {/* <div className="timer-inputs">
+                            <div>
+                                <label>Pomodoro</label>
+                                <input type="number" step="1" value={pomodoro} onChange={(e) => {handlePTime(e)}} />
+                            </div>
+                            <div>
+                                <label>Short Break</label>
+                                <input type="number" step="1" value={shortBreak} onChange={(e) => {handleSTime(e)}} />
+                            </div>
+                            <div>
+                                <label>Long Break</label>
+                                <input type="number" step="1" value={longBreak} onChange={(e) => {handleLTime(e)}} />
+                            </div>
+                        </div> */}
                     </div>
                     <hr />
                 </div>
