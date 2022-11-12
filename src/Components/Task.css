@@ -9,7 +9,7 @@
 .task-header {
     color: #fff;
     display: flex;
-    width: 480px;
+    max-width: 480px;
     padding: 10px 0;
     justify-content: space-between;
     align-items: center;
@@ -65,15 +65,96 @@
 }
 
 .new-task {
+    margin-bottom: 3rem;
+}
+
+.conf-area {
     display: flex;
     flex-direction: column;
     width: 100%;
     background: #fff;
     margin: 20px auto 0px;
     padding: 20px;
-    border-radius: 7px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 7px 7px 0px 0px;
     border: none;
     /* transition: cubic-bezier(0.075, 0.82, 0.165, 1); */
+}
+
+.conf-area p {
+    margin-bottom: 9px;
+}
+
+.pom-input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.pomodoro-num {
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 3px;
+    font-weight: 500;
+    padding: 6px;
+    margin-right: 8px;
+    width: 4rem;
+    outline:none;
+}
+
+.pomo-controls { 
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 5px;
+    padding: 8px 14px;
+    background: #fff;
+    color:rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    opacity: 0.8;
+}
+
+.pomo-controls:hover {
+    opacity: 1;
+}
+
+.action-area {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgb(219, 219, 219);
+    border-radius: 0px 0px 7px 7px;
+}
+
+.action-area button {
+    border: none;
+    width: 75px;
+    padding: 7px;
+    font-weight: 500;
+}
+
+.action-area button:first-child {
+    background: rgba(255, 255, 255, 0);
+    color:  rgba(0, 0, 0, 0.6);
+    opacity: 0.8;
+}
+
+.action-area button:first-child:hover {
+    opacity: 1;
+}
+
+.action-area button:last-child {
+    background:rgb(10, 10, 10);
+    color: #fff;
+    font-weight: 400;
+    border-radius: 7px;
+    opacity: 0.8;
+}
+
+.action-area button:last-child:hover {
+    opacity: 1;
 }
 
 .task-name {
@@ -81,6 +162,7 @@
     font-style: italic;
     font-weight: 600;
     font-size: 22px;
+    padding: 5px 0 20px;
     outline: none;
 }
 
