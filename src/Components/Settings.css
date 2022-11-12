@@ -1,0 +1,22 @@
+.timer-inputs {
+    display: flex;
+    justify-content: space-between;
+    color:rgb(198, 198, 198);
+    font-weight: 700;
+    /* border: 1px solid green; */
+}
+
+.timer-inputs label {
+    display: flex;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.timer-inputs input {
+    width: 6rem;
+    padding: 5px;
+    background: rgb(228, 228, 228);
+    border: none;
+    outline: none;
+}

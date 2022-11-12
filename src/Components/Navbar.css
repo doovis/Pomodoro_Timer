@@ -1,4 +1,5 @@
 .modal-bg {
+    z-index: 5;
     position: absolute;
     margin: 0 -1rem;
     height: 100vh;
@@ -37,7 +38,12 @@
 
 .close-btn {
     border: none;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(255, 255, 255, 1);
+    opacity: 0.3;
+}
+
+.close-btn:hover {
+    opacity: 0.6;
 }
 
 .close-btn img {
@@ -50,29 +56,6 @@
     font-size: 16px;
     font-weight: 700;
     color:rgb(78, 78, 78);
-}
-
-.timer-inputs {
-    display: flex;
-    justify-content: space-between;
-    color:rgb(198, 198, 198);
-    font-weight: 700;
-    /* border: 1px solid green; */
-}
-
-.timer-inputs label {
-    display: flex;
-    text-align: left;
-    font-size: 14px;
-    letter-spacing: 0.2px;
-}
-
-.timer-inputs input {
-    width: 6rem;
-    padding: 5px;
-    background: rgb(228, 228, 228);
-    border: none;
-    outline: none;
 }
 
 .separator {
@@ -122,9 +105,13 @@
     border-radius: 3px;
     color: #fff;
     font-size: 14px;
-    background: rgba(255, 255, 255, .13);
-    transition: 1s;
+    background: rgba(255, 255, 255, .2);
     outline: none;
+    opacity: 0.8;
+}
+
+.options button:hover {
+    opacity: 1;
 }
 
 .options img {

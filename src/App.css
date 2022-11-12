@@ -1,6 +1,7 @@
 .Main {
     margin: 0;
     padding: 0 1rem;
+    box-sizing: border-box;
     min-height: 100vh;
     transition: 1s;
 }

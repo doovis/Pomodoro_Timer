@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import "./App.css";
+import { BrowserRouter } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Timer from './Components/Timer';
+import Task from './Components/Task';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
@@ -17,16 +19,19 @@ const App = () => {
   }
   
   let timerTypes = [
-    {type: "pomodoro", time: time.pomodoro, color: "#e35454", secondaryCol: "#ed6969"},
-    {type: "short-break", time: time.shortBreak, color: "#3D5176", secondaryCol: "#4c6594"},
-    {type: "long-break", time: time.longBreak, color: "#66558A", secondaryCol: "#7d67ac"}
+    {type: "pomodoro", time: time.pomodoro, color: "#e35454"},
+    {type: "short-break", time: time.shortBreak, color: "#3D5176"},
+    {type: "long-break", time: time.longBreak, color: "#66558A"}
   ]
 
   return (
-    <div className="Main" style={{background: theme.color}}>
-      <Navbar timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}></Navbar>
-      <Timer type={timerTypes} handleTheme={handleTheme}></Timer>
-    </div>
+    <BrowserRouter>
+      <div className="Main" style={{background: theme.color}}>
+        <Navbar timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}></Navbar>
+        <Timer type={timerTypes} handleTheme={handleTheme}></Timer>
+        <Task></Task>
+      </div>
+    </BrowserRouter>
   )
 }
 
