@@ -169,3 +169,63 @@
 .task-name::placeholder {
     color:rgba(0, 0, 0, 0.3);
 }
+
+.task-item {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-size: 17px;
+    font-weight: 700;
+    background: #fff;
+    color: rgba(0, 0, 0, 0.7);
+    border-left: 6px solid rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+.task-item:hover {
+    border-left-color: rgb(176, 176, 176);
+}
+
+.task-item-img {
+    margin: 0 15px 0 10px;
+    width: 30px;
+    height: 30px;
+    opacity: 0.17;
+}
+
+.task-item-img:hover {
+    opacity: 0.1;
+}
+
+.task-item-p1 {
+    margin: auto 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    padding: 0 20px 0 0;
+    flex: 1;
+}
+
+.task-item-p2 {
+    margin: auto 0;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.task-item-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;;
+    background: #fff;
+    opacity: 0.4;
+    margin: 0 18px 0 22px;
+}
+
+.task-item-button img {
+    width: 18px;
+    height: 18px;
+}
