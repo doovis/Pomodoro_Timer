@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./App.css";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Timer from './Components/Timer';
 import Task from './Components/Task';
@@ -28,8 +28,15 @@ const App = () => {
     <BrowserRouter>
       <div className="Main" style={{background: theme.color}}>
         <Navbar timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}></Navbar>
+        
+        {/* Routing */}
+        <Routes>
+          <Route path="/login" element="Log in" />
+        </Routes>
+        
         <Timer type={timerTypes} handleTheme={handleTheme}></Timer>
         <Task></Task>
+
       </div>
     </BrowserRouter>
   )
