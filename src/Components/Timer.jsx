@@ -92,7 +92,7 @@ const Timer = ({type, handleTheme}) => {
                     return (
                         <button 
                             key={elem.id}
-                            data-id={elem.id} 
+                            data-id={elem.id}
                             onClick={timerTypes}
                             className={Number(activeRef.current) === elem.id ? `btn-active` : ""} 
                         >

@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Timer from './Components/Timer';
-import Task from './Components/Task';
+import Tasklist from './Components/Tasklist';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
@@ -31,11 +31,12 @@ const App = () => {
         
         {/* Routing */}
         <Routes>
+          <Route path="/" element="" />
           <Route path="/login" element="Log in" />
         </Routes>
         
         <Timer type={timerTypes} handleTheme={handleTheme}></Timer>
-        <Task></Task>
+        <Tasklist></Tasklist>
 
       </div>
     </BrowserRouter>
