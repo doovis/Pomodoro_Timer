@@ -7,6 +7,8 @@ const Tasklist = () => {
     // States
     const [taskActive, setTaskActive] = useState(false);
     const [pomNum, setPomNum] = useState(1);
+    const [selectTask, setSelectTask] = useState(false);
+    const [curTask, setCurTask] = useState(0);
     const [tasklist, setTasklist] = useState([]);
     
     // Refs
@@ -55,12 +57,17 @@ const Tasklist = () => {
     }
 
     const handleSelectTask = (arrItem) => {
-        setTaskActive(true)
-        console.log('a')
-        tasklist.forEach((item) => {item.selected = false})
+        tasklist.map((item) => {item.selected = false})
         arrItem.selected = true
-        setTaskActive(false)
+        setSelectTask(prev => !prev)
+        console.log('selected');
     }
+    
+    const handleRemoveTask = (arrItem) => {
+        setTasklist(tasklist.filter((item) => item !== arrItem))
+
+    }
+
 
     return (
         <div className='task-component'>
@@ -74,7 +81,20 @@ const Tasklist = () => {
                 tasklist.length > 0 ?
                 <div className='tasks-list'>
                     {tasklist.map((item) => {
-                        return ( <Task key={item.id} item={item} handleSelectTask={handleSelectTask} /> )
+                        return (
+                            <span 
+                                key={item.id}
+                                className={`task-item ${item.selected ? 'selected' : ''}`}
+                                onClick={() => handleSelectTask(item)}
+                                >
+                                <img className='task-item-img' src="https://cdn-icons-png.flaticon.com/512/1008/1008958.png" />
+                                <p className='task-item-p1'>{item.taskname}</p>
+                                <p className='task-item-p2'>{curTask}/{item.taskcount}</p>
+                                <button className='task-item-button' onClick={() => handleRemoveTask(item)}>
+                                    <img alt="options" src="https://pomofocus.io/icons/vertical-ellipsis.png" />
+                                </button>
+                            </span>
+                        )
                     })}
                 </div>
                 :
