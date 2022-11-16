@@ -59,9 +59,7 @@ const Timer = ({type, handleTheme}) => {
         modeRef.current = 'stop';
         setMode('stop');
 
-        return () => {
-            clearInterval(interID);
-        }
+        return () => clearInterval(interID)
     }, [type])
     
     // switching timer types

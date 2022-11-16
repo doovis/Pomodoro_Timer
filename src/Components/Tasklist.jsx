@@ -1,29 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Task from "./Task";
 import "./Tasklist.css";
 
 const Tasklist = () => {
+    const listInit = () => {
+        return JSON.parse(localStorage.getItem('task-list'))
+            ? JSON.parse(localStorage.getItem('task-list'))
+            : []
+    }
+
     // States
-    const [taskActive, setTaskActive] = useState(false);
+    const [addTaskActive, setAddTaskActive] = useState(false);
     const [pomNum, setPomNum] = useState(1);
-    const [selectTask, setSelectTask] = useState(false);
     const [curTask, setCurTask] = useState(0);
-    const [tasklist, setTasklist] = useState([]);
+    const [tasklist, setTasklist] = useState(() => listInit())
+    const [selectedTask, setSelectedTask] = useState(tasklist?.filter(task => task.selected === true)[0]);
     
     // Refs
     const bottomRef = useRef(document.getElementsByClassName("dummy-bottom"))   
     const inputRef = useRef(document.getElementsByClassName("task-name"))
-    
-    useEffect(() => {    
-        return () => {
-          const taskList = JSON.parse(localStorage.getItem('task-list'))
-          if (taskList?.length > 0) {
-              setTasklist(taskList)
-          }
-      }
-    }, [])
-  
+    const tasklistRef = useRef(tasklist)
+    const selectedTaskRef = useRef(selectedTask)
+
     useEffect(() => {    
         return () => {
             if (inputRef.current != null && inputRef.current.length !== 0) {
@@ -31,19 +30,7 @@ const Tasklist = () => {
             }
             bottomRef.current.scrollIntoView({ behavior: "smooth"})
         }
-    }, [taskActive])
-
-    const addTasks = () => {
-        const taskName = document.getElementsByClassName("task-name")[0].value;
-        const taskCount = document.getElementsByClassName("pomodoro-num")[0].value;
-        
-        if (taskName !== '') {
-            const newList = tasklist.concat({id: uuidv4(), taskname: taskName, taskcount: taskCount, selected: false});
-            window.localStorage.setItem('task-list', JSON.stringify(newList))
-            setTasklist(newList);
-            setTaskActive(false);
-        }
-    }
+    }, [addTaskActive])
     
     const pomodoroNum = (e) => {
         const numb = e.target.value
@@ -56,21 +43,52 @@ const Tasklist = () => {
         console.log("Invalid value");
     }
 
-    const handleSelectTask = (arrItem) => {
-        tasklist.map((item) => {item.selected = false})
-        arrItem.selected = true
-        setSelectTask(prev => !prev)
-        console.log('selected');
+    const addTasks = () => {
+        const taskName = document.getElementsByClassName("task-name")[0].value;
+        const taskCount = document.getElementsByClassName("pomodoro-num")[0].value;
+        
+        if (taskName !== '') {
+            const newTask = {id: uuidv4(), taskname: taskName, taskcount: taskCount, selected: false}
+
+            
+            if (tasklist.length === 0) {
+                newTask.selected = true;
+                setSelectedTask(newTask)
+            }
+            const newList = tasklist.concat(newTask)
+            window.localStorage.setItem('task-list', JSON.stringify(newList))
+            
+            setTasklist(newList);
+            inputRef.current.value = ''
+            setPomNum(1)
+            inputRef.current.focus();
+        }
     }
     
-    const handleRemoveTask = (arrItem) => {
-        setTasklist(tasklist.filter((item) => item !== arrItem))
-
+    const handleSelectTask = (task) => {
+        tasklist.forEach((item) => {item.selected = false})
+        task.selected = true
+        setSelectedTask(task)
+        window.localStorage.setItem('task-list', JSON.stringify(tasklist))
     }
-
+    
+    const handleRemoveTask = (e, task) => {
+        e.stopPropagation();
+        const removedList = tasklist.filter((item) => item !== task)
+        
+        if (task.selected) {
+            setSelectedTask(null)
+        }
+        
+        setTasklist(removedList)
+        window.localStorage.setItem('task-list', JSON.stringify(removedList))
+    }
 
     return (
         <div className='task-component'>
+            <div className='task-title'>
+                <p>{selectedTask ? selectedTask.taskname : "Time to focus!"}</p>
+            </div>
             <div className='task-header'>
                 <h5>Tasks</h5>
                 <button><img alt="options" src="https://pomofocus.io/icons/threedots-white.png" /></button>
@@ -82,18 +100,18 @@ const Tasklist = () => {
                 <div className='tasks-list'>
                     {tasklist.map((item) => {
                         return (
-                            <span 
+                            <div 
                                 key={item.id}
                                 className={`task-item ${item.selected ? 'selected' : ''}`}
-                                onClick={() => handleSelectTask(item)}
+                                onClick={() => {handleSelectTask(item)}}
                                 >
                                 <img className='task-item-img' src="https://cdn-icons-png.flaticon.com/512/1008/1008958.png" />
                                 <p className='task-item-p1'>{item.taskname}</p>
                                 <p className='task-item-p2'>{curTask}/{item.taskcount}</p>
-                                <button className='task-item-button' onClick={() => handleRemoveTask(item)}>
+                                <button className='task-item-button' onClick={(e) => handleRemoveTask(e, item)}>
                                     <img alt="options" src="https://pomofocus.io/icons/vertical-ellipsis.png" />
                                 </button>
-                            </span>
+                            </div>
                         )
                     })}
                 </div>
@@ -103,7 +121,7 @@ const Tasklist = () => {
 
             {/* add task component */}
             {
-                taskActive ? 
+                addTaskActive ? 
                 <div className="new-task">
                     <div className='conf-area'>
                         <input ref={inputRef} type="text" className="task-name" placeholder="What are you working on?"/>
@@ -115,12 +133,12 @@ const Tasklist = () => {
                         </div>
                     </div>
                     <div className='action-area'>
-                        <button onClick={() => setTaskActive(false)}>Cancel</button>
+                        <button onClick={() => setAddTaskActive(false)}>Cancel</button>
                         <button onClick={addTasks}>Save</button>
                     </div>
                 </div>
                 :
-                <div className='add-task' onClick={(e) => {setTaskActive(true)}}>
+                <div className='add-task' onClick={(e) => {setAddTaskActive(true)}}>
                     <img alt="" src="https://pomofocus.io/icons/plus-circle-white.png" />
                     <p>Add Task</p>
                 </div>
