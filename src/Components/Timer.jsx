@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Timer.css';
 
-const Timer = ({type, handleTheme}) => {
+const Timer = ({type, handleTheme, handleTaskCount}) => {
     // timer type button array
     let buttons = [
         {id: 1, title: "Pomodoro", class: "pomodoro"},
@@ -44,6 +44,8 @@ const Timer = ({type, handleTheme}) => {
             if (secondsLeftRef.current < 1) {
                 modeRef.current = "stop";
                 setMode("stop");
+                console.log(modeRef.current);
+                handleTaskCount()
                 return;
             }
             
@@ -51,6 +53,7 @@ const Timer = ({type, handleTheme}) => {
             setSecondsLeft(secondsLeftRef.current);
         }, 1000);
 
+        
         // Updating timer on settings change
         secondsLeftRef.current = type[activeRef.current - 1].time * 60;
         setSecondsLeft(type[activeRef.current - 1].time * 60);
@@ -58,6 +61,9 @@ const Timer = ({type, handleTheme}) => {
         // Stopping timer
         modeRef.current = 'stop';
         setMode('stop');
+        
+        // if (secondsLeft < 1 && mode === "stop") {
+        // }
 
         return () => clearInterval(interID)
     }, [type])
@@ -98,16 +104,15 @@ const Timer = ({type, handleTheme}) => {
                         </button>
                     );
                 })}
-           </div>
-           <div className="timer" onChange={() => {
-                console.log('stopped');
-                modeRef.current = 'stop';
-                setMode('stop');
-                }}>
-            <p>{min < 10 ? "0" + min : min}</p>
-            <p>:</p>
-            <p>{sec < 10 ? "0" + sec : sec}</p>
-           </div>
+            </div>
+            <div className="timer" onChange={() => {
+                    modeRef.current = 'stop';
+                    setMode('stop');
+                    }}>
+                <p>{min < 10 ? "0" + min : min}</p>
+                <p>:</p>
+                <p>{sec < 10 ? "0" + sec : sec}</p>
+            </div>
             {modeRef.current === "inProgress" ? buttonInProgress : buttonStop }
         </div>
     )

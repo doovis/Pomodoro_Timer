@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import Task from "./Task";
 import "./Tasklist.css";
 
-const Tasklist = () => {
+const Tasklist = ({taskCountRef}) => {
     const listInit = () => {
-        return JSON.parse(localStorage.getItem('task-list'))
+        return localStorage.getItem('task-list')
             ? JSON.parse(localStorage.getItem('task-list'))
             : []
     }
@@ -13,15 +13,13 @@ const Tasklist = () => {
     // States
     const [addTaskActive, setAddTaskActive] = useState(false);
     const [pomNum, setPomNum] = useState(1);
-    const [curTask, setCurTask] = useState(0);
+    // const [curTask, setCurTask] = useState(0);
     const [tasklist, setTasklist] = useState(() => listInit())
     const [selectedTask, setSelectedTask] = useState(tasklist?.filter(task => task.selected === true)[0]);
     
     // Refs
     const bottomRef = useRef(document.getElementsByClassName("dummy-bottom"))   
     const inputRef = useRef(document.getElementsByClassName("task-name"))
-    const tasklistRef = useRef(tasklist)
-    const selectedTaskRef = useRef(selectedTask)
 
     useEffect(() => {    
         return () => {
@@ -47,7 +45,7 @@ const Tasklist = () => {
         const taskName = document.getElementsByClassName("task-name")[0].value;
         const taskCount = document.getElementsByClassName("pomodoro-num")[0].value;
         
-        if (taskName !== '') {
+        if (taskName !== '' && pomNum > 0) {
             const newTask = {id: uuidv4(), taskname: taskName, taskcount: taskCount, selected: false}
 
             
@@ -100,18 +98,7 @@ const Tasklist = () => {
                 <div className='tasks-list'>
                     {tasklist.map((item) => {
                         return (
-                            <div 
-                                key={item.id}
-                                className={`task-item ${item.selected ? 'selected' : ''}`}
-                                onClick={() => {handleSelectTask(item)}}
-                                >
-                                <img className='task-item-img' src="https://cdn-icons-png.flaticon.com/512/1008/1008958.png" />
-                                <p className='task-item-p1'>{item.taskname}</p>
-                                <p className='task-item-p2'>{curTask}/{item.taskcount}</p>
-                                <button className='task-item-button' onClick={(e) => handleRemoveTask(e, item)}>
-                                    <img alt="options" src="https://pomofocus.io/icons/vertical-ellipsis.png" />
-                                </button>
-                            </div>
+                            <Task key={item.id} taskCountRef={taskCountRef} item={item} handleSelectTask={handleSelectTask} handleRemoveTask={handleRemoveTask} />
                         )
                     })}
                 </div>

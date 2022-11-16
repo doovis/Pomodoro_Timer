@@ -34,9 +34,7 @@ const Navbar = ({ timerTypes, handleTimeSetting }) => {
                         <img src="https://pomofocus.io/icons/config-white.png" />
                         <span>Setting</span>
                     </button>
-                    <div>
-                    </div>
-                    <Link to="/login" onClick={() => {}}>
+                    <Link to="/login" onClick={() => {}} style={{textDecoration: "none"}}>
                         <button>
                             <img src="https://pomofocus.io/icons/user-white.png" />
                             <span>Login</span>
