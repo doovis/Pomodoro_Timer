@@ -3,7 +3,7 @@
     flex-direction: column;
     background: rgba(255, 255, 255, .13);
     max-width: 480px;
-    height: 322px;
+    max-height: 322px;
     margin: 2.5rem auto;
     border-radius: 6px;
     transition: 1s;
@@ -34,9 +34,9 @@
     font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     justify-content: center;
     align-items: center;
-    height: 170px;
+    max-height: 170px;
     font-size: 120px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     margin: 0 auto;
     user-select: none;
@@ -100,4 +100,10 @@
 .timer-window:last-child {
     display: flex;
     justify-content: flex-end;
+}
+
+@media only screen and (max-width: 680px) {
+    .timer {
+        font-size: 105px;
+    }
 }

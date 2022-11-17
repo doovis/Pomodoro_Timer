@@ -1,4 +1,5 @@
 .timer-inputs {
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     color:rgb(198, 198, 198);

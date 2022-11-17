@@ -14,6 +14,7 @@ const Tasklist = ({taskCountRef}) => {
     const [addTaskActive, setAddTaskActive] = useState(false);
     const [pomNum, setPomNum] = useState(1);
     // const [curTask, setCurTask] = useState(0);
+    const [dropMenu, setDropMenu] = useState(false);
     const [tasklist, setTasklist] = useState(() => listInit())
     const [selectedTask, setSelectedTask] = useState(tasklist?.filter(task => task.selected === true)[0]);
     
@@ -81,6 +82,17 @@ const Tasklist = ({taskCountRef}) => {
         setTasklist(removedList)
         window.localStorage.setItem('task-list', JSON.stringify(removedList))
     }
+    
+    const handleRemoveAllTasks = () => {
+        setTasklist([])
+        window.localStorage.setItem('task-list', [])
+        setDropMenu(false)
+        setSelectedTask(null)
+    }
+
+    const handleDropMenu = () => {
+        setDropMenu(true)
+    }
 
     return (
         <div className='task-component'>
@@ -89,7 +101,21 @@ const Tasklist = ({taskCountRef}) => {
             </div>
             <div className='task-header'>
                 <h5>Tasks</h5>
-                <button><img alt="options" src="https://pomofocus.io/icons/threedots-white.png" /></button>
+                <button onClick={handleDropMenu}><img alt="options" src="https://pomofocus.io/icons/threedots-white.png" /></button>
+                {
+                dropMenu ?
+                    <div className='drop-menu'>
+                        <div onClick={handleRemoveAllTasks}>
+                            <img src='https://pomofocus.io/icons/delete-black.png' />
+                            <p>Clear all tasks</p>
+                        </div>
+                        {/* <div>
+                            <img src='https://pomofocus.io/icons/delete-black.png' />
+                        </div> */}
+                    </div>
+                    :
+                    ""
+                }
             </div>
 
             {/* task list */}
