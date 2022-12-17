@@ -188,11 +188,11 @@
 
 .drop-menu {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 10;
     position: absolute;
+    height: 2.2rem;
     top: 536px;
     left: 50%;
     margin-left: 100px;
@@ -207,10 +207,17 @@
 .drop-menu div {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
-    padding: 4px 0;
+    height: 100%;
     cursor: pointer;
+}
+
+.drop-menu-element p {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: auto 10px auto 0px;
 }
 
 .drop-menu div:hover {

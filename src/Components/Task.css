@@ -25,6 +25,14 @@
     border-radius: 50%;
 }
 
+.task-item-finished-img {
+    margin: 0 15px 0 10px;
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+    border-radius: 50%;
+}
+
 .task-item-img:hover {
     opacity: 0.1;
 }

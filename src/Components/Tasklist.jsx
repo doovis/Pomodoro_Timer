@@ -19,8 +19,24 @@ const Tasklist = ({taskCountRef}) => {
     const [selectedTask, setSelectedTask] = useState(tasklist?.filter(task => task.selected === true)[0]);
     
     // Refs
+    const divRef = useRef(null);
     const bottomRef = useRef(document.getElementsByClassName("dummy-bottom"))   
     const inputRef = useRef(document.getElementsByClassName("task-name"))
+
+    useEffect(() => {
+        console.log('click 1');
+        document.addEventListener('click', handleOutsideClick);
+        return () => {
+            document.addEventListener('click', handleOutsideClick);
+        }
+    }, [])
+
+    const handleOutsideClick = (event) => {
+        if (divRef.current && !divRef.current.contains(event.target)) {
+            console.log(event.target.parentElement);
+            setDropMenu(false);
+        }
+    }
 
     useEffect(() => {    
         return () => {
@@ -91,6 +107,7 @@ const Tasklist = ({taskCountRef}) => {
     }
 
     const handleDropMenu = () => {
+        console.log('click 3');
         setDropMenu(true)
     }
 
@@ -104,14 +121,11 @@ const Tasklist = ({taskCountRef}) => {
                 <button onClick={handleDropMenu}><img alt="options" src="https://pomofocus.io/icons/threedots-white.png" /></button>
                 {
                 dropMenu ?
-                    <div className='drop-menu'>
-                        <div onClick={handleRemoveAllTasks}>
+                    <div className='drop-menu' ref={divRef}>
+                        <div className='drop-menu-element' onClick={handleRemoveAllTasks}>
                             <img src='https://pomofocus.io/icons/delete-black.png' />
                             <p>Clear all tasks</p>
                         </div>
-                        {/* <div>
-                            <img src='https://pomofocus.io/icons/delete-black.png' />
-                        </div> */}
                     </div>
                     :
                     ""

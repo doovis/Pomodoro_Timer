@@ -13,7 +13,6 @@ const Navbar = ({ timerTypes, handleTimeSetting }) => {
     //     report: false
     // }
 
-
     return (
         <>
             {modalOpt === "settings" && <Settings setModal={setModalOpt} timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}/>}

@@ -47,10 +47,10 @@ const App = () => {
         <Navbar timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}></Navbar>
         
         {/* Routing */}
-        <Routes>
+        {/* <Routes>
           <Route path="/" element="" />
           <Route path="/login" element="Log in" />
-        </Routes>
+        </Routes> */}
         
         <Timer type={timerTypes} handleTheme={handleTheme} handleTaskCount={handleTaskCount}></Timer>
         <Tasklist taskCountRef={taskCountRef}></Tasklist>
