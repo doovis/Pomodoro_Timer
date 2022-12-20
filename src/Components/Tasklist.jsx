@@ -32,8 +32,6 @@ const Tasklist = ({taskCountRef}) => {
 
     const handleOutsideClick = (event) => {
         if (divRef.current && !divRef.current.contains(event.target.nextElementSibling)) {
-            console.log("outside click...");
-            console.log(event.target.nextElementSibling);
             setDropMenu(false);
         }
     }
