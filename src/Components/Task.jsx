@@ -17,8 +17,6 @@ const Task = ({ item, taskCountRef, handleSelectTask, handleRemoveTask }) => {
   const finishTask = () => {
     setTaskFinished(state => !state)
   }
-
-  console.log(taskFinished);
   
   return (
     <div 

@@ -24,16 +24,16 @@ const Tasklist = ({taskCountRef}) => {
     const inputRef = useRef(document.getElementsByClassName("task-name"))
 
     useEffect(() => {
-        console.log('click 1');
         document.addEventListener('click', handleOutsideClick);
         return () => {
             document.addEventListener('click', handleOutsideClick);
         }
-    }, [])
+    }, [divRef])
 
     const handleOutsideClick = (event) => {
-        if (divRef.current && !divRef.current.contains(event.target)) {
-            console.log(event.target.parentElement);
+        if (divRef.current && !divRef.current.contains(event.target.nextElementSibling)) {
+            console.log("outside click...");
+            console.log(event.target.nextElementSibling);
             setDropMenu(false);
         }
     }
@@ -107,18 +107,17 @@ const Tasklist = ({taskCountRef}) => {
     }
 
     const handleDropMenu = () => {
-        console.log('click 3');
-        setDropMenu(true)
+        setDropMenu((prev) => !prev)
     }
 
     return (
-        <div className='task-component'>
+        <div className='task-component' >
             <div className='task-title'>
                 <p>{selectedTask ? selectedTask.taskname : "Time to focus!"}</p>
             </div>
             <div className='task-header'>
                 <h5>Tasks</h5>
-                <button onClick={handleDropMenu}><img alt="options" src="https://pomofocus.io/icons/threedots-white.png" /></button>
+                <button onClick={handleDropMenu}></button>
                 {
                 dropMenu ?
                     <div className='drop-menu' ref={divRef}>

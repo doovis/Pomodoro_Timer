@@ -25,10 +25,18 @@
     align-items: center;
     border: none;
     border-radius: 5px;
+    background-image: url('https://pomofocus.io/icons/threedots-white.png');
+    background-size: 19px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .task-header button:hover {
     background: rgba(255, 255, 255, 0.3);
+    background-image: url('https://pomofocus.io/icons/threedots-white.png');
+    background-size: 19px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .task-header img {
@@ -222,4 +230,16 @@
 
 .drop-menu div:hover {
     background:rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 510px) {
+    .drop-menu {
+        margin-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 428px) {
+    .drop-menu {
+        margin-left: 0;
+    }
 }

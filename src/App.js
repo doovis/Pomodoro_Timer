@@ -14,12 +14,12 @@ const App = () => {
   const taskCountRef = useRef(taskCount)
 
 
-  useEffect(() => {  
-    return () => {
-      console.log("reference: ", taskCountRef.current)
-      console.log("og: ", taskCount)
-    }
-  }, [taskCount])
+  // useEffect(() => {  
+  //   return () => {
+  //     console.log("reference: ", taskCountRef.current)
+  //     console.log("og: ", taskCount)
+  //   }
+  // }, [taskCount])
   
 
   const handleTheme = (theme) => {
