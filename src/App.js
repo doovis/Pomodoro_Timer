@@ -13,15 +13,6 @@ const App = () => {
 
   const taskCountRef = useRef(taskCount)
 
-
-  // useEffect(() => {  
-  //   return () => {
-  //     console.log("reference: ", taskCountRef.current)
-  //     console.log("og: ", taskCount)
-  //   }
-  // }, [taskCount])
-  
-
   const handleTheme = (theme) => {
     setTheme({color: theme.color, themeNum: theme.theme})
   }
@@ -45,13 +36,6 @@ const App = () => {
     <BrowserRouter>
       <div className="Main" style={{background: theme.color}}>
         <Navbar timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}></Navbar>
-        
-        {/* Routing */}
-        {/* <Routes>
-          <Route path="/" element="" />
-          <Route path="/login" element="Log in" />
-        </Routes> */}
-        
         <Timer type={timerTypes} handleTheme={handleTheme} handleTaskCount={handleTaskCount}></Timer>
         <Tasklist taskCountRef={taskCountRef}></Tasklist>
 

@@ -7,16 +7,11 @@ import './Navbar.css';
 
 const Navbar = ({ timerTypes, handleTimeSetting }) => {
     const [ modalOpt, setModalOpt ] = useState(""); // active modals
-    // Modal types
-    // let modals = {
-    //     settings: false,
-    //     report: false
-    // }
 
     return (
         <>
+            {/* {modalOpt === "report" && <Report setModal={setModalOpt}/>} */}
             {modalOpt === "settings" && <Settings setModal={setModalOpt} timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}/>}
-            {modalOpt === "report" && <Report setModal={setModalOpt}/>}
             <div className="header">
                 <div className='logo'>
                     <a href="/">
@@ -25,13 +20,13 @@ const Navbar = ({ timerTypes, handleTimeSetting }) => {
                     </a>
                 </div>
                 <div className='options'>
-                    <button onClick={() => setModalOpt("report")}>
+                    {/* <button onClick={() => setModalOpt("report")}>
                         <img src="https://pomofocus.io/icons/graph-white.png" />
                         <span>Report</span>
-                    </button>
+                    </button> */}
                     <button onClick={() => {setModalOpt("settings")}}>
                         <img src="https://pomofocus.io/icons/config-white.png" />
-                        <span>Setting</span>
+                        <span>Settings</span>
                     </button>
                     <Link to="/login" onClick={() => {}} style={{textDecoration: "none"}}>
                         <button>

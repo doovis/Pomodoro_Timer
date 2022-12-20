@@ -25,7 +25,7 @@ const Task = ({ item, taskCountRef, handleSelectTask, handleRemoveTask }) => {
       onClick={() => {handleSelectTask(item)}}
       >
       <img className={taskFinished ? finishedCircClass : unfinishedCircClass} onClick={() => {finishTask()}} src="https://cdn-icons-png.flaticon.com/512/1008/1008958.png" />
-      <p className='task-item-p1'>{item.taskname}</p>
+      <p className={`task-item-p1 ${taskFinished ? 'task-item-p1-finished' : ''}`}>{item.taskname}</p>
       <p className='task-item-p2'>{curTask}/{item.taskcount}</p>
       <button className='task-item-button' onClick={(e) => handleRemoveTask(e, item)}>
           <img alt="options" src="https://pomofocus.io/icons/delete-black.png" />
