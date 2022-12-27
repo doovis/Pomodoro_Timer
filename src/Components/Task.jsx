@@ -10,7 +10,9 @@ const Task = ({ item, taskCountRef, handleSelectTask, handleRemoveTask }) => {
 
   useEffect(() => {  
     return () => {
-      setCurTask(taskCountRef.current)
+      if (item.selected) {
+        setCurTask(taskCountRef.current)
+      }
     }
   }, [taskCountRef.current])
 

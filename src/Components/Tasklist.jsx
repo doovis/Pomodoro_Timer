@@ -135,7 +135,7 @@ const Tasklist = ({taskCountRef}) => {
                 <div className='tasks-list'>
                     {tasklist.map((item) => {
                         return (
-                            <Task key={item.id} taskCountRef={taskCountRef} item={item} handleSelectTask={handleSelectTask} handleRemoveTask={handleRemoveTask} />
+                            <Task key={item.id} item={item} taskCountRef={taskCountRef} handleSelectTask={handleSelectTask} handleRemoveTask={handleRemoveTask} />
                         )
                     })}
                 </div>
