@@ -34,12 +34,12 @@ npm start
 
 Frontpage of the application
 
-[application design](https://raw.githubusercontent.com/doovis/React_Pomodoro/master/screenshots/Design.png)
+[application design](https://github.com/doovis/React_Pomodoro/blob/master/screenshots/Design.png)
 
 task addition section
 
-[tasks](https://raw.githubusercontent.com/doovis/React_Pomodoro/master/screenshots/Task_addition.png)
+[tasks](https://github.com/doovis/React_Pomodoro/blob/master/screenshots/Task_addition.png)
 
 Settings section
 
-[settings](https://raw.githubusercontent.com/doovis/React_Pomodoro/master/screenshots/Settings.png)
+[settings](https://github.com/doovis/React_Pomodoro/blob/master/screenshots/Settings.png)
