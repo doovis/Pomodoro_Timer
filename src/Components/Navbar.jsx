@@ -1,8 +1,6 @@
-import ReactDOM from 'react-dom/client';
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Settings from './Settings';
-import Report from './Report';
 import './Navbar.css';
 
 const Navbar = ({ timerTypes, handleTimeSetting }) => {
@@ -15,7 +13,7 @@ const Navbar = ({ timerTypes, handleTimeSetting }) => {
             <div className="header">
                 <div className='logo'>
                     <a href="/">
-                        <img src="https://pomofocus.io/icons/icon-white.png" width='20' height='20'></img>
+                        <img alt='logo' src="https://pomofocus.io/icons/icon-white.png" width='20' height='20'></img>
                         <h2>Pomofocus</h2>
                     </a>
                 </div>
@@ -25,12 +23,12 @@ const Navbar = ({ timerTypes, handleTimeSetting }) => {
                         <span>Report</span>
                     </button> */}
                     <button onClick={() => {setModalOpt("settings")}}>
-                        <img src="https://pomofocus.io/icons/config-white.png" />
+                        <img alt='settings' src="https://pomofocus.io/icons/config-white.png" />
                         <span>Settings</span>
                     </button>
                     <Link to="/login" onClick={() => {}} style={{textDecoration: "none"}}>
                         <button>
-                            <img src="https://pomofocus.io/icons/user-white.png" />
+                            <img alt='login' src="https://pomofocus.io/icons/user-white.png" />
                             <span>Login</span>
                         </button>
                     </Link>

@@ -50,7 +50,7 @@ const Settings = ({setModal, timerTypes, handleTimeSetting}) => {
             <div className="modal-window">
                 <div className='settings-header'>
                     <h4>Timer setting</h4>
-                    <button className='close-btn' onClick={() => setModal("")}><img src="https://pomofocus.io/icons/remove-black-sm.png" /></button>
+                    <button className='close-btn' onClick={() => setModal("")}><img alt='remove' src="https://pomofocus.io/icons/remove-black-sm.png" /></button>
                 </div>
                 <hr />
                 <div className="inputs">

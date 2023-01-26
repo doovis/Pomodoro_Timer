@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import "./App.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Timer from './Components/Timer';
 import Tasklist from './Components/Tasklist';
@@ -38,7 +38,6 @@ const App = () => {
         <Navbar timerTypes={timerTypes} handleTimeSetting={handleTimeSetting}></Navbar>
         <Timer type={timerTypes} handleTheme={handleTheme} handleTaskCount={handleTaskCount}></Timer>
         <Tasklist taskCountRef={taskCountRef}></Tasklist>
-
       </div>
     </BrowserRouter>
   )
