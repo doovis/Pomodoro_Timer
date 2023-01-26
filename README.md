@@ -2,31 +2,29 @@
 
 This application is a copy of the [official pomofocus website](https://pomofocus.io).
 The project was built using React JS framework.
-Few minor features might not fully function because this project was built for practice purposes.
+Few minor features might not fully function because this project was built for training purposes.
 
 ## Installation
 
-To run the project locally:
-
-Clone this repository
+To run the project locally clone this repository:
 
 ```
 git clone https://github.com/doovis/React-Pomodoro_Timer.git
 ```
 
-Go inside the cloned directory
+Go inside the cloned directory:
 
 ```
 cd React_Pomodoro
 ```
 
-Download node_modules
+Download node_modules:
 
 ```
 npm install
 ```
 
-start application
+start application:
 
 ```
 npm start
@@ -36,12 +34,12 @@ npm start
 
 Frontpage of the application
 
-[application design](./screenshots/Design.png)
+[application design](https://raw.githubusercontent.com/doovis/React_Pomodoro/master/screenshots/Design.png)
 
 task addition section
 
-[tasks](./screenshots/Task_addition.png)
+[tasks](https://raw.githubusercontent.com/doovis/React_Pomodoro/master/screenshots/Task_addition.png)
 
 Settings section
 
-[settings](./screenshots/Settings.png)
+[settings](https://raw.githubusercontent.com/doovis/React_Pomodoro/master/screenshots/Settings.png)
